@@ -3,6 +3,8 @@ TAP challenge de Guido Torres.
 Arquitectura usada: Node.js como servidor, Express.js como middleware, MongoDB Atlas como base de datos de prueba, Mocha y supertest para las pruebas.
 
 
+Antes de empezar, correr el comando npm install para instalar las dependencias.
+
 Para inicializar el servidor, correr el comando node start, el servidor va a estar abierto en el puesto 3000, acepta requests GET en /game y /game/{ID}, devuelve el json de la partida creada si no se especifica parametro ID,
 caso contrario, devuelve json de la partida con dicho ID (si no existe, devolvera error).
 
