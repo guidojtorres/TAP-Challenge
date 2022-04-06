@@ -4,7 +4,7 @@
   "description": "TAP challenge Guido Torres",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

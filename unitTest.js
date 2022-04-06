@@ -4,27 +4,27 @@ const db = require('./db')
 const port = 8000
 
 
+
+//Iniciando servidor para las pruebas, y coneccion de BBDD
+before(function (done) {
+    db.connectToServer(
+        (err) => {
+            if (err) {
+                console.error(err);
+                process.exit();
+            }
+
+            app.listen(port, () => {
+                console.log(`Servidor corriendo en el puerto: ${port} `);
+            })
+            return done()
+        }
+    )
+
+});
+
 //Pruebas
 describe('Iniciando servidor', function () {
-
-    //Iniciando servidor para las pruebas, y coneccion de BBDD
-
-    before(function (done) {
-        db.connectToServer(
-            (err) => {
-                if (err) {
-                    console.error(err);
-                    process.exit();
-                }
-
-                app.listen(port, () => {
-                    console.log(`Servidor corriendo en el puerto: ${port} `);
-                    done()
-                })
-            }
-        )
-    });
-
     //Probando los GET en /game
     describe('Probando GET game', () => {
 
