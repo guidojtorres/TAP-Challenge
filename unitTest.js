@@ -7,6 +7,7 @@ const port = 8000
 
 //Iniciando servidor para las pruebas, y coneccion de BBDD
 before(function (done) {
+    this.timeout(3000)
     db.connectToServer(
         (err) => {
             if (err) {
