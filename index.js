@@ -1,3 +1,5 @@
+//Imports
+
 const express = require('express')
 const port = 3000
 const dbo = require('./db')
@@ -5,6 +7,8 @@ const utils = require('./utils')
 const app = express()
 
 
+
+//Declaracion de la ruta GET en /game, funcionalidad de creacion de entrada y redireccion.
 app.get('/game', async (req, res) => {
     const dbConnect = dbo.getDb();
     const uuid = utils.idGenerator()
@@ -29,13 +33,13 @@ app.get('/game', async (req, res) => {
             if (err) {
                 res.status(400).send('Error creando el juego')
             } else {
-                res.redirect(204, `/game/${newGame.game.id}`)
+                res.status(204).redirect(`/game/${newGame.game.id}`)
             }
         })
 
 })
 
-
+//Declaracion GET de /game/{ID} y funcionalidad.
 app.get('/game/:id', async (req, res) => {
     const dbConnect = dbo.getDb();
     var collection = dbConnect.collection('games')
@@ -43,7 +47,7 @@ app.get('/game/:id', async (req, res) => {
         .find({ "game.id": req.params.id })
         .toArray()
 
-    if (result) {
+    if (result.length > 0) {
         res.status(200).json(result)
     } else {
         res.status(400).send('Error')
@@ -51,6 +55,7 @@ app.get('/game/:id', async (req, res) => {
 })
 
 
+//Funcion para empezar el servidor en el puerto deseado y conectarse a la base de datos.
 function startServer() {
     dbo.connectToServer(
         (err) => {
